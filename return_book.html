@@ -1,0 +1,22 @@
+{% extends 'library_app/base.html' %}
+{% block title %}Return Book{% endblock %}
+{% block content %}
+    <div class="page-header">
+        <div>
+            <span class="eyebrow">Checkout</span>
+            <h1>Return a book</h1>
+        </div>
+        <a class="btn btn-outline" href="{% url 'view_issued_books' %}">← Back to ledger</a>
+    </div>
+
+    <div class="form-card">
+        <form method="post">
+            {% csrf_token %}
+            <div class="field">
+                <label for="issue_id">Issue ID</label>
+                <input type="number" id="issue_id" name="issue_id" required>
+            </div>
+            <button type="submit" class="btn">Mark as returned</button>
+        </form>
+    </div>
+{% endblock %}

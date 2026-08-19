@@ -1,0 +1,51 @@
+{% extends 'library_app/base.html' %}
+{% block title %}Ledger{% endblock %}
+{% block content %}
+    <div class="page-header">
+        <div>
+            <span class="eyebrow">Ledger</span>
+            <h1>Issue records</h1>
+        </div>
+        <div style="display:flex; gap:10px;">
+            <a class="btn btn-outline" href="{% url 'return_book' %}">Return a book</a>
+            <a class="btn" href="{% url 'issue_book' %}">+ Issue a book</a>
+        </div>
+    </div>
+
+    <div class="card-index">
+        {% if records %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Issue ID</th>
+                        <th>Member</th>
+                        <th>Book</th>
+                        <th>Issue Date</th>
+                        <th>Return Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for r in records %}
+                        <tr>
+                            <td>{{ r.issue_id }}</td>
+                            <td>{{ r.admn_no.name }}</td>
+                            <td>{{ r.book_id.title }}</td>
+                            <td>{{ r.issue_date }}</td>
+                            <td>{{ r.return_date|default:"—" }}</td>
+                            <td>
+                                {% if r.return_date %}
+                                    <span class="stamp in">Returned</span>
+                                {% else %}
+                                    <span class="stamp out">Out</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="empty-state">No books have been issued yet.</div>
+        {% endif %}
+    </div>
+{% endblock %}

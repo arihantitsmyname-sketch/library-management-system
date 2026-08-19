@@ -1,0 +1,38 @@
+{% extends 'library_app/base.html' %}
+{% block title %}Members{% endblock %}
+{% block content %}
+    <div class="page-header">
+        <div>
+            <span class="eyebrow">Registry</span>
+            <h1>Members</h1>
+        </div>
+        <a class="btn" href="{% url 'add_student' %}">+ Register a member</a>
+    </div>
+
+    <div class="card-index">
+        {% if students %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Admn No</th>
+                        <th>Name</th>
+                        <th>Class</th>
+                        <th>Section</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for s in students %}
+                        <tr>
+                            <td>{{ s.admn_no }}</td>
+                            <td>{{ s.name }}</td>
+                            <td>{{ s.student_class }}</td>
+                            <td>{{ s.section }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="empty-state">No members registered yet.</div>
+        {% endif %}
+    </div>
+{% endblock %}
