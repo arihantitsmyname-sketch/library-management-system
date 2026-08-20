@@ -1,0 +1,26 @@
+{% extends 'library_app/base.html' %}
+{% block title %}Issue Book{% endblock %}
+{% block content %}
+    <div class="page-header">
+        <div>
+            <span class="eyebrow">Checkout</span>
+            <h1>Issue a book</h1>
+        </div>
+        <a class="btn btn-outline" href="{% url 'view_issued_books' %}">← Back to ledger</a>
+    </div>
+
+    <div class="form-card">
+        <form method="post">
+            {% csrf_token %}
+            <div class="field">
+                <label for="admn_no">Admission Number</label>
+                <input type="number" id="admn_no" name="admn_no" required>
+            </div>
+            <div class="field">
+                <label for="book_id">Book ID</label>
+                <input type="number" id="book_id" name="book_id" required>
+            </div>
+            <button type="submit" class="btn">Issue book</button>
+        </form>
+    </div>
+{% endblock %}

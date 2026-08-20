@@ -1,0 +1,40 @@
+{% extends 'library_app/base.html' %}
+{% block title %}Books{% endblock %}
+{% block content %}
+    <div class="page-header">
+        <div>
+            <span class="eyebrow">Catalog</span>
+            <h1>Books</h1>
+        </div>
+        <a class="btn" href="{% url 'add_book' %}">+ Add a book</a>
+    </div>
+
+    <div class="card-index">
+        {% if books %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Book ID</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Price</th>
+                        <th>Copies</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in books %}
+                        <tr>
+                            <td>{{ book.book_id }}</td>
+                            <td>{{ book.title }}</td>
+                            <td>{{ book.author }}</td>
+                            <td>₹{{ book.price }}</td>
+                            <td>{{ book.quantity }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="empty-state">The catalog is empty. Add the first book to get started.</div>
+        {% endif %}
+    </div>
+{% endblock %}

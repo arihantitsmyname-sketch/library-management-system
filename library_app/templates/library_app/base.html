@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Library{% endblock %} · Reading Room</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="layout">
+        <nav class="shelf">
+            <div class="shelf-title">
+                The Reading Room
+                <span>ACCESSION REGISTER</span>
+            </div>
+            <a class="spine {% if request.resolver_match.url_name == 'view_books' or request.resolver_match.url_name == 'add_book' %}active{% endif %}" href="{% url 'view_books' %}">
+                Books <span class="tag">/catalog</span>
+            </a>
+            <a class="spine {% if request.resolver_match.url_name == 'view_students' or request.resolver_match.url_name == 'add_student' %}active{% endif %}" href="{% url 'view_students' %}">
+                Members <span class="tag">/members</span>
+            </a>
+            <a class="spine {% if request.resolver_match.url_name == 'issue_book' %}active{% endif %}" href="{% url 'issue_book' %}">
+                Issue <span class="tag">/checkout</span>
+            </a>
+            <a class="spine {% if request.resolver_match.url_name == 'return_book' or request.resolver_match.url_name == 'view_issued_books' %}active{% endif %}" href="{% url 'view_issued_books' %}">
+                Ledger <span class="tag">/ledger</span>
+            </a>
+        </nav>
+
+        <main class="content">
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li class="{{ message.tags }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>

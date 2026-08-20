@@ -1,0 +1,34 @@
+{% extends 'library_app/base.html' %}
+{% block title %}Add Member{% endblock %}
+{% block content %}
+    <div class="page-header">
+        <div>
+            <span class="eyebrow">Registry</span>
+            <h1>Register a member</h1>
+        </div>
+        <a class="btn btn-outline" href="{% url 'view_students' %}">← Back to members</a>
+    </div>
+
+    <div class="form-card">
+        <form method="post">
+            {% csrf_token %}
+            <div class="field">
+                <label for="admn_no">Admission Number</label>
+                <input type="number" id="admn_no" name="admn_no" required>
+            </div>
+            <div class="field">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="field">
+                <label for="student_class">Class</label>
+                <input type="text" id="student_class" name="student_class" required>
+            </div>
+            <div class="field">
+                <label for="section">Section</label>
+                <input type="text" maxlength="1" id="section" name="section" required>
+            </div>
+            <button type="submit" class="btn">Register member</button>
+        </form>
+    </div>
+{% endblock %}

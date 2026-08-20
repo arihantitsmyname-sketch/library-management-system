@@ -1,0 +1,25 @@
+{% extends 'library_app/base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    <div class="page-header">
+        <div>
+            <span class="eyebrow">Front Desk</span>
+            <h1>Welcome back</h1>
+        </div>
+    </div>
+
+    <div class="stats">
+        <div class="stat-tile">
+            <div class="num">{{ total_books }}</div>
+            <span class="label">Titles in catalog</span>
+        </div>
+        <div class="stat-tile">
+            <div class="num">{{ total_students }}</div>
+            <span class="label">Registered members</span>
+        </div>
+        <div class="stat-tile">
+            <div class="num">{{ currently_issued }}</div>
+            <span class="label">Books currently out</span>
+        </div>
+    </div>
+{% endblock %}
