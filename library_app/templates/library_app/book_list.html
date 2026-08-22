@@ -19,6 +19,7 @@
                         <th>Author</th>
                         <th>Price</th>
                         <th>Copies</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,6 +30,14 @@
                             <td>{{ book.author }}</td>
                             <td>₹{{ book.price }}</td>
                             <td>{{ book.quantity }}</td>
+                            <td>
+                                <form method="post" action="{% url 'delete_book' %}"
+                                      onsubmit="return confirm('Remove “{{ book.title }}” from the catalog?');">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="book_id" value="{{ book.book_id }}">
+                                    <button type="submit" class="link-delete">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>
