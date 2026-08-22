@@ -6,9 +6,11 @@ urlpatterns = [
 
     path('books/', views.view_books, name='view_books'),
     path('books/add/', views.add_book, name='add_book'),
+    path('books/delete/', views.delete_book, name='delete_book'),
 
     path('students/', views.view_students, name='view_students'),
     path('students/add/', views.add_student, name='add_student'),
+    path('students/delete/', views.delete_student, name='delete_student'),
 
     path('issue/', views.issue_book, name='issue_book'),
     path('return/', views.return_book, name='return_book'),
