@@ -1,25 +1,40 @@
 {% extends 'library_app/base.html' %}
 {% block title %}Home{% endblock %}
 {% block content %}
-    <div class="page-header">
-        <div>
+    <div class="hero">
+        <div class="hero-copy">
             <span class="eyebrow">Front Desk</span>
-            <h1>Welcome back</h1>
+            <h1>Every book has a card.<br>Every card tells you where it is.</h1>
+            <p>Track your catalog, members, and checkouts the way a library always has — just faster, and without the paper cuts.</p>
+            <div class="hero-actions">
+                <a class="btn" href="{% url 'issue_book' %}">Issue a book</a>
+                <a class="btn btn-outline" href="{% url 'view_books' %}">Browse catalog</a>
+            </div>
         </div>
-    </div>
 
-    <div class="stats">
-        <div class="stat-tile">
-            <div class="num">{{ total_books }}</div>
-            <span class="label">Titles in catalog</span>
-        </div>
-        <div class="stat-tile">
-            <div class="num">{{ total_students }}</div>
-            <span class="label">Registered members</span>
-        </div>
-        <div class="stat-tile">
-            <div class="num">{{ currently_issued }}</div>
-            <span class="label">Books currently out</span>
+        <div class="due-card-wrap">
+            <div class="due-card">
+                <div class="due-card-head">
+                    <div>
+                        <span class="stamp-title">Circulation Desk</span>
+                        <span class="stamp-sub">Today's Count</span>
+                    </div>
+                    <div class="card-no">NO. {{ total_books|add:total_students|stringformat:"04d" }}</div>
+                </div>
+
+                <div class="due-row">
+                    <span class="due-label">Titles in catalog</span>
+                    <span class="due-num">{{ total_books }}</span>
+                </div>
+                <div class="due-row">
+                    <span class="due-label">Registered members</span>
+                    <span class="due-num">{{ total_students }}</span>
+                </div>
+                <div class="due-row">
+                    <span class="due-label">Books currently out</span>
+                    <span class="due-num">{{ currently_issued }}</span>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
