@@ -15,15 +15,19 @@
                 <span>ACCESSION REGISTER</span>
             </div>
             <a class="spine {% if request.resolver_match.url_name == 'view_books' or request.resolver_match.url_name == 'add_book' %}active{% endif %}" href="{% url 'view_books' %}">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
                 Books <span class="tag">/catalog</span>
             </a>
             <a class="spine {% if request.resolver_match.url_name == 'view_students' or request.resolver_match.url_name == 'add_student' %}active{% endif %}" href="{% url 'view_students' %}">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M15 8h4M15 12h4M6 16h12"/></svg>
                 Members <span class="tag">/members</span>
             </a>
             <a class="spine {% if request.resolver_match.url_name == 'issue_book' %}active{% endif %}" href="{% url 'issue_book' %}">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 21l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
                 Issue <span class="tag">/checkout</span>
             </a>
             <a class="spine {% if request.resolver_match.url_name == 'return_book' or request.resolver_match.url_name == 'view_issued_books' %}active{% endif %}" href="{% url 'view_issued_books' %}">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16v18l-8-4-8 4V3z"/></svg>
                 Ledger <span class="tag">/ledger</span>
             </a>
         </nav>
