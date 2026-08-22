@@ -37,4 +37,76 @@
             </div>
         </div>
     </div>
+
+    <div class="quick-links">
+        <a class="quick-link" href="{% url 'view_books' %}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            <div>
+                <span class="quick-link-title">Catalog</span>
+                <span class="quick-link-sub">Browse & add books</span>
+            </div>
+        </a>
+        <a class="quick-link" href="{% url 'view_students' %}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M15 8h4M15 12h4M6 16h12"/></svg>
+            <div>
+                <span class="quick-link-title">Members</span>
+                <span class="quick-link-sub">Manage the registry</span>
+            </div>
+        </a>
+        <a class="quick-link" href="{% url 'issue_book' %}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 21l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+            <div>
+                <span class="quick-link-title">Issue</span>
+                <span class="quick-link-sub">Check a book out</span>
+            </div>
+        </a>
+        <a class="quick-link" href="{% url 'view_issued_books' %}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16v18l-8-4-8 4V3z"/></svg>
+            <div>
+                <span class="quick-link-title">Ledger</span>
+                <span class="quick-link-sub">See what's out</span>
+            </div>
+        </a>
+    </div>
+
+    <div class="page-header" style="margin-top: 12px;">
+        <div>
+            <span class="eyebrow">Latest</span>
+            <h1 style="font-size: 1.5rem;">Recent activity</h1>
+        </div>
+        <a class="btn btn-outline" href="{% url 'view_issued_books' %}">View full ledger</a>
+    </div>
+
+    <div class="card-index">
+        {% if recent_issues %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Member</th>
+                        <th>Book</th>
+                        <th>Issue Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for r in recent_issues %}
+                        <tr>
+                            <td>{{ r.admn_no.name }}</td>
+                            <td>{{ r.book_id.title }}</td>
+                            <td>{{ r.issue_date }}</td>
+                            <td>
+                                {% if r.return_date %}
+                                    <span class="stamp in">Returned</span>
+                                {% else %}
+                                    <span class="stamp out">Out</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="empty-state">Nothing issued yet — checkouts will show up here.</div>
+        {% endif %}
+    </div>
 {% endblock %}
