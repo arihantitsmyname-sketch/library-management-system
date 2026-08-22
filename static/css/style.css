@@ -196,7 +196,7 @@ a { color: inherit; }
     border: 1px solid var(--parchment-dark);
     border-radius: 5px;
     box-shadow: 0 10px 26px var(--shadow-sm);
-    overflow: hidden;
+    overflow-x: auto;
 }
 
 table { width: 100%; border-collapse: collapse; }
@@ -309,6 +309,38 @@ tbody tr:hover { background: rgba(166, 131, 46, 0.1); }
     border-color: var(--brass);
     box-shadow: 0 0 0 3px rgba(166, 131, 46, 0.15);
 }
+
+/* ---------- Focus states ---------- */
+
+.spine:focus-visible,
+.btn:focus-visible,
+.btn-outline:focus-visible,
+.link-delete:focus-visible {
+    outline: 2px solid var(--brass-light);
+    outline-offset: 2px;
+}
+
+.field input:focus-visible, .field select:focus-visible {
+    outline: none;
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+    margin-top: 48px;
+    padding-top: 18px;
+    border-top: 1px solid var(--parchment-dark);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    opacity: 0.65;
+    display: flex;
+    gap: 8px;
+}
+
+.site-footer .dot { opacity: 0.6; }
 
 /* ---------- Messages ---------- */
 
@@ -462,6 +494,8 @@ tbody tr:hover { background: rgba(166, 131, 46, 0.1); }
     .shelf { width: 100%; flex-direction: row; overflow-x: auto; padding: 16px; }
     .shelf::after { display: none; }
     .shelf-title { display: none; }
+    .spine .tag { display: none; }
+    .spine { white-space: nowrap; }
     .content { padding: 26px; }
     .hero-copy h1 { font-size: 2rem; }
 }
