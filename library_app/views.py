@@ -39,6 +39,25 @@ def add_book(request):
     return render(request, 'library_app/add_book.html')
 
 
+def delete_book(request):
+    if request.method == 'POST':
+        book_id = request.POST['book_id']
+        book = get_object_or_404(Book, pk=book_id)
+
+        still_out = IssueRecord.objects.filter(book_id=book, return_date__isnull=True).exists()
+        if still_out:
+            messages.error(
+                request,
+                f"Can't delete “{book.title}” — a copy is still checked out. Return it first."
+            )
+        else:
+            title = book.title
+            book.delete()
+            messages.success(request, f"“{title}” was removed from the catalog.")
+
+    return redirect('view_books')
+
+
 # ---------- Students ----------
 
 def view_students(request):
@@ -60,6 +79,25 @@ def add_student(request):
         except Exception as e:
             messages.error(request, f"Could not add student: {e}")
     return render(request, 'library_app/add_student.html')
+
+
+def delete_student(request):
+    if request.method == 'POST':
+        admn_no = request.POST['admn_no']
+        student = get_object_or_404(Student, pk=admn_no)
+
+        still_out = IssueRecord.objects.filter(admn_no=student, return_date__isnull=True).exists()
+        if still_out:
+            messages.error(
+                request,
+                f"Can't delete {student.name} — they still have a book checked out. Return it first."
+            )
+        else:
+            name = student.name
+            student.delete()
+            messages.success(request, f"{name} was removed from the members list.")
+
+    return redirect('view_students')
 
 
 # ---------- Issue / Return ----------
