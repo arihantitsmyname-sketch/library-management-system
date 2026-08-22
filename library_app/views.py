@@ -11,6 +11,7 @@ def home(request):
         'total_books': Book.objects.count(),
         'total_students': Student.objects.count(),
         'currently_issued': IssueRecord.objects.filter(return_date__isnull=True).count(),
+        'recent_issues': IssueRecord.objects.select_related('admn_no', 'book_id').order_by('-issue_id')[:5],
     }
     return render(request, 'library_app/home.html', context)
 
