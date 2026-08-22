@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Library{% endblock %} · Reading Room</title>
+    <meta name="description" content="The Reading Room — a card-catalog-styled system for tracking a library's books, members, and checkouts.">
+    <meta property="og:title" content="The Reading Room">
+    <meta property="og:description" content="Track your catalog, members, and checkouts the way a library always has — just faster.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><rect width=%2224%22 height=%2224%22 rx=%224%22 fill=%22%23182430%22/><path d=%22M6.5 5H18v14H6.5A1.5 1.5 0 0 1 5 17.5v-11A1.5 1.5 0 0 1 6.5 5z%22 fill=%22none%22 stroke=%22%23c9a227%22 stroke-width=%221.6%22/><path d=%22M8.5 9h6M8.5 12h6%22 stroke=%22%23c9a227%22 stroke-width=%221.2%22 stroke-linecap=%22round%22/></svg>">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
@@ -42,6 +47,11 @@
             {% endif %}
 
             {% block content %}{% endblock %}
+
+            <footer class="site-footer">
+                <span>The Reading Room</span>
+                {% if total_books %}<span class="dot">·</span><span>{{ total_books }} titles catalogued</span>{% endif %}
+            </footer>
         </main>
     </div>
 </body>
