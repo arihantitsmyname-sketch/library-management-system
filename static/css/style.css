@@ -362,7 +362,7 @@ tbody tr:hover { background: rgba(166, 131, 46, 0.1); }
     grid-template-columns: 1.1fr 0.9fr;
     gap: 48px;
     align-items: center;
-    padding: 10px 0 44px;
+    padding: 6px 0 36px;
 }
 
 .hero-copy .eyebrow { margin-bottom: 10px; }
@@ -485,8 +485,56 @@ tbody tr:hover { background: rgba(166, 131, 46, 0.1); }
     font-weight: 800;
 }
 
+/* ---------- Quick links (homepage) ---------- */
+
+.quick-links {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 40px;
+}
+
+.quick-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--card);
+    border: 1px solid var(--parchment-dark);
+    border-left: 4px solid var(--brass);
+    border-radius: 5px;
+    padding: 16px 18px;
+    text-decoration: none;
+    color: var(--ink);
+    box-shadow: 0 6px 16px var(--shadow-sm);
+    transition: transform 0.14s ease, box-shadow 0.14s ease;
+}
+
+.quick-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 22px var(--shadow-sm);
+}
+
+.quick-link svg { flex-shrink: 0; color: var(--brass); }
+
+.quick-link-title {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.quick-link-sub {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+    margin-top: 2px;
+}
+
 @media (max-width: 900px) {
     .hero { grid-template-columns: 1fr; }
+    .quick-links { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 720px) {
@@ -498,6 +546,7 @@ tbody tr:hover { background: rgba(166, 131, 46, 0.1); }
     .spine { white-space: nowrap; }
     .content { padding: 26px; }
     .hero-copy h1 { font-size: 2rem; }
+    .quick-links { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
